@@ -7,13 +7,12 @@ wheels/
 *.egg-info
 
 # Virtual environments
-.venv
-"*.venv" 
+*.venv 
+.env/
+.venv/
 
 files/
 validations/
-"*.xlsx" 
-"*.xls" 
-"*.csv" 
-
-
+*.xls
+*.csv
+*.xlsx
