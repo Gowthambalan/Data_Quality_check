@@ -1,0 +1,73 @@
+expected_schema:
+  - MeterNumber
+  - KWHImport
+  - KWHExport
+  - KVAHImport
+  - KVAHExport
+  - Date
+  - Time
+
+datetime_columns:
+  - Datetime
+  - Timestamp
+  - reading_time
+  - dateandtime
+
+
+numeric_columns: []   # Leave empty to auto-detect all number columns
+
+value_ranges:
+  Voltage: [180, 280]
+  voltager: [180, 280]
+  voltagey: [180, 280]
+  Current: [0, 100]
+  freq: [49.0, 51.5]
+  kWh Import (KWH_I_TOTAL): [0, 1000000]
+  Export (KWH_E_TOTAL): [0, 1000000]
+  voltager: [200, 280]
+  voltagey: [200, 280]
+  voltageb: [200, 280]
+  currentr: [0, 100]
+  currenty: [0, 100]
+  currentb: [0, 100]
+  pf: [-1.0, 1.0]
+
+domain_rules:
+  freq: [49.0, 51.5]                  # Normal frequency range
+  pf: [-1.0, 1.0]                     # Power factor must be between -1 and 1
+  Voltage: [180, 280]                 # If voltage column exists
+  Current: [0, 100]                   # If current column exists
+  kWh Import (KWH_I_TOTAL): [0, 1000000]
+  Export (KWH_E_TOTAL): [0, 1000000]
+
+
+identifier_columns:
+  - meter_id
+  - timestamp
+  - MeterNumber
+  - ReadingID
+  - Datetime
+
+
+cross_field_rules:
+  - [kWh Import (KWH_I_TOTAL), Export (KWH_E_TOTAL)]   # Import ≥ Export
+  - [KWHImport, KVAHImport]                           # Energy ≤ Apparent Energy
+  - [KWHExport, KVAHExport]                           # Export Real ≤ Export Apparent
+                                      
+
+
+metadata_columns:
+  - Source
+  - LastUpdated
+  - CreatedBy
+
+
+frequency_columns:
+  - Frequency
+  - Freq            
+  - Hz
+
+powerfactor_columns:
+  - PF
+  - PowerFactor
+  - Power_Factor
